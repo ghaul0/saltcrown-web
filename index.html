@@ -112,7 +112,7 @@ body {
 		<script>
 // Saltcrown: index.pck is served in parts (GitHub's file size limit); join them on fetch.
 (function () {
-  const PARTS = 3;
+  const PARTS = 3, BUILD = "2026.11.20-0944";
   const realFetch = window.fetch.bind(window);
   window.fetch = function (input, init) {
     const url = typeof input === 'string' ? input : input.url;
@@ -123,7 +123,8 @@ body {
         while (true) {
           if (!reader) {
             if (i >= PARTS) { ctrl.close(); return; }
-            const r = await realFetch(url.replace('index.pck', 'index.pck.part' + i++), init);
+            // ?v=BUILD so a browser never mixes cached parts of an older build
+            const r = await realFetch(url.replace(/index\.pck(\?[^#]*)?/,'index.pck.part' + (i++) + '?v=' + BUILD), init);
             if (!r.ok) { ctrl.error(new Error('Missing pck part ' + (i - 1))); return; }
             reader = r.body.getReader();
           }
@@ -139,7 +140,7 @@ body {
 </script>
 <script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":290670000,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":290673020,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
