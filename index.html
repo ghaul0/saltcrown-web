@@ -38,7 +38,7 @@ body {
 }
 
 #status {
-	background-color: #264680;
+	background-color: #0d1f33;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -93,7 +93,32 @@ body {
 		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
 <link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
 
-	</head>
+	<style>
+#status-splash { object-fit: cover !important; width: 100% !important; height: 100% !important; max-width: none !important; max-height: none !important; }
+#sc-shade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 55%, rgba(5,5,8,.85)); pointer-events: none; }
+#status-progress { position: absolute !important; left: 10% !important; width: 80% !important; top: auto !important; bottom: calc(12% + env(safe-area-inset-bottom, 0px)) !important;
+  height: 12px !important; margin: 0 !important; transform: none !important; -webkit-appearance: none; appearance: none;
+  border: 1px solid rgba(255,255,255,.35); border-radius: 7px; background: rgba(0,0,0,.6); overflow: hidden; z-index: 2; }
+#status-progress::-webkit-progress-bar { background: rgba(0,0,0,.6); }
+#status-progress::-webkit-progress-value { background: #e2726a; border-radius: 7px; }
+#status-progress::-moz-progress-bar { background: #e2726a; }
+#sc-title { position: absolute; left: 50%; transform: translateX(-50%); top: calc(6% + env(safe-area-inset-top, 0px)); width: 82%; max-width: 620px; z-index: 2; pointer-events: none; }
+#sc-tip { position: absolute; left: 8%; right: 8%; bottom: calc(12% - 52px + env(safe-area-inset-bottom, 0px)); z-index: 2;
+  color: #f6f2eb; font: 500 15px Montserrat, "Segoe UI", system-ui, sans-serif; text-align: center; text-shadow: 0 1px 3px #000; }
+</style>
+<script>
+addEventListener('DOMContentLoaded', function () {
+  var tips = ["Sail over a wreck's glowing crate to salvage it.", "A maxed weapon and its deckhand make an evolution.", "Two maxed weapons can merge into one and free a slot.", "Elites, enemy ships and the Megalodon drop sea chests.", "Broadsides fire when enemies are abeam: turn side-on.", "Ram rocks at speed and your hull pays for it.", "Gems buy Perks that last between runs.", "The Kraken rises at eight minutes.", "Luck can turn up a fourth card at level-up.", "Banish a card you never want to see again this run."];
+  var img = document.getElementById('status-splash');
+  if (img) img.src = 'loading/load_' + (1 + Math.floor(Math.random() * 4)) + '.jpg';
+  var st = document.getElementById('status');
+  if (!st) return;
+  var sh = document.createElement('div'); sh.id = 'sc-shade'; st.appendChild(sh);
+  var ti = document.createElement('img'); ti.id = 'sc-title'; ti.src = 'loading/title.png'; ti.alt = 'Saltcrown'; st.appendChild(ti);
+  var d = document.createElement('div'); d.id = 'sc-tip'; d.textContent = tips[Math.floor(Math.random() * tips.length)]; st.appendChild(d);
+});
+</script>
+</head>
 	<body>
 		<canvas id="canvas">
 			Your browser does not support the canvas tag.
@@ -112,7 +137,7 @@ body {
 		<script>
 // Saltcrown: index.pck is served in parts (GitHub's file size limit); join them on fetch.
 (function () {
-  const PARTS = 4, BUILD = "2026.11.20-1304";
+  const PARTS = 6, BUILD = "2026.11.20-2020";
   const realFetch = window.fetch.bind(window);
   window.fetch = function (input, init) {
     const url = typeof input === 'string' ? input : input.url;
@@ -140,7 +165,7 @@ body {
 </script>
 <script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":390968692,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":508554960,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
