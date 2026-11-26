@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
-		<title>Saltcrown</title>
+		<title>Saltcrown: Broadside</title>
 		<style>
 html, body, #canvas {
 	margin: 0;
@@ -108,13 +108,13 @@ body {
 </style>
 <script>
 addEventListener('DOMContentLoaded', function () {
-  var tips = ["Sail over a wreck's glowing crate to salvage it.", "A maxed weapon and its deckhand make an evolution.", "Two maxed weapons can merge into one and free a slot.", "Elites, enemy ships and the Megalodon drop sea chests.", "Broadsides fire when enemies are abeam: turn side-on.", "Ram rocks at speed and your hull pays for it.", "Gems buy Perks that last between runs.", "The Kraken rises at eight minutes.", "Luck can turn up a fourth card at level-up.", "Banish a card you never want to see again this run."];
+  var tips = ["Hold your phone sideways.", "Drag from the dot at your bow to plot a course, then press Sail.", "A battery that has fired reloads through your next turn. Turn the other side to the enemy.", "Lie ahead or astern of a ship and your shot rakes her: you roll two dice and keep the higher.", "Sailing into the wind costs far more movement. Watch the colour of your course.", "Drag the sea to pan. Pinch to zoom. Twist two fingers to turn the view."];
   var img = document.getElementById('status-splash');
   if (img) img.src = 'loading/load_' + (1 + Math.floor(Math.random() * 4)) + '.jpg';
   var st = document.getElementById('status');
   if (!st) return;
   var sh = document.createElement('div'); sh.id = 'sc-shade'; st.appendChild(sh);
-  var ti = document.createElement('img'); ti.id = 'sc-title'; ti.src = 'loading/title.png'; ti.alt = 'Saltcrown'; st.appendChild(ti);
+  var ti = document.createElement('img'); ti.id = 'sc-title'; ti.src = 'loading/title.png'; ti.alt = 'Saltcrown: Broadside'; st.appendChild(ti);
   var d = document.createElement('div'); d.id = 'sc-tip'; d.textContent = tips[Math.floor(Math.random() * tips.length)]; st.appendChild(d);
 });
 </script>
@@ -137,7 +137,7 @@ addEventListener('DOMContentLoaded', function () {
 		<script>
 // Saltcrown: index.pck is served in parts (GitHub's file size limit); join them on fetch.
 (function () {
-  const PARTS = 6, BUILD = "2026.11.20-2020";
+  const PARTS = 1, BUILD = "2026.11.26-0654";
   const realFetch = window.fetch.bind(window);
   window.fetch = function (input, init) {
     const url = typeof input === 'string' ? input : input.url;
@@ -165,7 +165,7 @@ addEventListener('DOMContentLoaded', function () {
 </script>
 <script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":508554960,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":91339780,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
